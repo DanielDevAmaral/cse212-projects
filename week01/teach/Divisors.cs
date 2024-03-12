@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 public static class Divisors {
     /// <summary>
     /// Entry point for the Divisors class
@@ -16,9 +18,37 @@ public static class Divisors {
     /// </summary>
     /// <param name="number">The number to find the divisor</param>
     /// <returns>List of divisors</returns>
+    /// When implementing the method, use a for loop, an if statement, and call Add
     private static List<int> FindDivisors(int number) {
         List<int> results = new List<int>();
-        // Todo problem 1
+        if (number < 2)
+        {
+            results.Add(1);
+            return results;
+        }
+        else if (isPrime(number))
+        {
+            results.Add(1);
+            return results;
+        }
+        else
+        {
+            for(int i = 2; i < number; i++)
+                if (number % i == 0)
+                    results.Add(i);
+        }
         return results;
+    }
+
+    private static bool isPrime(int n)
+    {
+        int x = 2;
+        while (x * x <= n)
+        {
+            if ((n % x) == 0)
+                return false;
+            else x++;
+        }
+        return true;
     }
 }
