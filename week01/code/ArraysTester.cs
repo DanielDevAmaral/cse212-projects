@@ -39,7 +39,22 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //First i can create a List<int> (dynamic array) that will have the size of the Lenght
+        //Second i iterate the array setting a variable i = 1 to multiply the number each time the loop restart 
+        //Append the result in the List and the convert the list into an array
+        //Because i can use the () in the List to set a capacity, so turn this element into a static array is more easily 
+
+
+        List<double> results = new List<double>(length);
+
+        for (int i = 1; i < length; i++)
+        {
+            double x = i * number;
+            results.Add(x);
+        }
+        
+
+        return results.ToArray(); // replace this return statement with your own
     }
     
     /// <summary>
@@ -56,6 +71,46 @@ public static class ArraysTester {
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Create variable that holds the length of the data List
+        // Use % to ensure that the amount don't overflow the List, like amount %= data.Count;
+        // create a new static array [] with the size of the data length
+        // create a for loop and set to i < data length
+        //create a index controler for the new array, so the data will be insert in the rigth position
+        // the index controler will be calculate by the sum of i + amount and to not overflow the size of the array they will the to module the data length (%)
+        // I can use the new index controle to assing as an index to the static array created, and that will be equal to data[i] since the i start in 0
+        // we can store that new static array and then create another loop to pass the value of this array to the List<int> data.
+
+
+        int length = data.Count;
+
+        amount %= length; 
+
+        var arrayStatic = new int [length];
+
+        for (int i = 0; i < length; i++)
+        {
+            int indexControler = (amount + i) % length;
+            arrayStatic[indexControler] = data[i];
+        }
+
+        for (int i = 0; i < length; i++)
+        {
+            data[i] = arrayStatic[i];
+        }
+        
+
+
+
+      
+
+       
+
+
+       
+
+
+
 
     }
 }
