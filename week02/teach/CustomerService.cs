@@ -11,20 +11,28 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: add two customers and serve one customers
+        // Expected Result: display the first customer that i input
         Console.WriteLine("Test 1");
 
-        // Defect(s) Found: 
+        var queue = new CustomerService(2);
+        queue.AddNewCustomer();
+        queue.AddNewCustomer();
+
+        queue.ServeCustomer();
+        
+        // Defect(s) Found: the ServeCustomer prints the wrong one
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: trying to serve a empyt queue
+        // Expected Result: display an error message
         Console.WriteLine("Test 2");
-
-        // Defect(s) Found: 
+        var secondQueue = new CustomerService(2);
+        secondQueue.ServeCustomer();
+        
+        // Defect(s) Found:  The code not display anything
 
         Console.WriteLine("=================");
 
@@ -88,9 +96,17 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+        if (_queue.Count > 0)
+        {
+            _queue.RemoveAt(_queue.Count - 1);
+            var customer = _queue[_queue.Count - 1];
+            Console.WriteLine(customer);
+        }
+        else
+        {
+            Console.WriteLine("There is no one in the Queue :)");
+        }
+
     }
 
     /// <summary>

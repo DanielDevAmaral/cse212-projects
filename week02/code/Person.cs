@@ -4,7 +4,7 @@ public class Person {
 
     internal Person(string name, int turns) {
         Name = name;
-        Turns = turns;
+        Turns = turns - 1;
     }
 
     public override string ToString() {
