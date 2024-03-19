@@ -52,7 +52,7 @@
         players.AddPerson("Tim", 0);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 10; i > 0; i--) {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }

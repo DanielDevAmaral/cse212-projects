@@ -29,23 +29,30 @@ public class TakingTurnsQueue {
     /// person has an infinite number of turns.  An error message is displayed 
     /// if the queue is empty.
     /// </summary>
-    public void GetNextPerson() {
-        if (_people.IsEmpty())
+public void GetNextPerson()
+{
+
+
+    if (_people.IsEmpty())
+    {
+        Console.WriteLine("No one in the queue.");
+    }
+
+    else
+    {
+        Person person = _people.Dequeue();
+        if (person.Turns > 0)
         {
-            Console.WriteLine("No one in the queue.");
-        } 
-        else
-        {
-            Person person = _people.Dequeue();
             person.Turns -= 1;
-            _people.Enqueue(person);
+            _people.Enqueue(person); 
         }
 
-        
 
         Console.WriteLine(person.Name);
         
     }
+
+}
 
     public override string ToString() {
         return _people.ToString();

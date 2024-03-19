@@ -8,6 +8,20 @@ public class Program
         // with any code or ideas you have that do not directly apply to
         // one of your projects.
 
-        Console.WriteLine("Hello Sandbox World!");
+        string random = "asdjlkfj";
+        HashSet<char> newrandom = new HashSet<char>();
+
+
+        foreach (var x in random)
+        {
+            newrandom.Add(x);
+            
+        }
+
+        Console.WriteLine(newrandom.ToString());
+
+
+        
+
     }
 }

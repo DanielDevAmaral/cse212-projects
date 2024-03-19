@@ -111,6 +111,32 @@ public static class SetsAndMapsTester {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        // Create a HashSet for efficient element lookup
+        HashSet<string> wordSet = new HashSet<string>();
+
+        // Iterate through the word list
+        foreach (string word in words)
+        {
+          // Reverse the word
+          string reversedWord = new string(word.Reverse().ToArray());
+
+          // Check if the reversed word is in the set and the words are not the same
+          if (wordSet.Contains(reversedWord) && word != reversedWord)
+          {
+            // Print the pair of words
+            Console.WriteLine($"{word} & {reversedWord}");
+          }
+          else
+          {
+            // Add the word to the set
+            wordSet.Add(word);
+          }
+        }
+
+
+
+
     }
 
     /// <summary>
@@ -158,6 +184,14 @@ public static class SetsAndMapsTester {
     /// #############
     private static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
+        if (word1.Length != word2.Length)
+        {
+            return false;
+        }
+        
+        //split //sort 
+
+        
         return false;
     }
 
