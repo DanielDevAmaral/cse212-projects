@@ -41,13 +41,13 @@ public void GetNextPerson()
     else
     {
         Person person = _people.Dequeue();
-        if (person.Turns > 0)
+        if (person.Turns > 1)
         {
             person.Turns -= 1;
             _people.Enqueue(person); 
         }
-
-
+        else if (person.Turns <= 0)
+            _people.Enqueue(person);
         Console.WriteLine(person.Name);
         
     }
