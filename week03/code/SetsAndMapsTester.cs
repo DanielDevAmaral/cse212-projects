@@ -1,7 +1,9 @@
 using System.Text.Json;
 
-public static class SetsAndMapsTester {
-    public static void Run() {
+public static class SetsAndMapsTester
+{
+    public static void Run()
+    {
         // Problem 1: Find Pairs with Sets
         Console.WriteLine("\n=========== Finding Pairs TESTS ===========");
         DisplayPairs(new[] { "am", "at", "ma", "if", "fi" });
@@ -107,7 +109,8 @@ public static class SetsAndMapsTester {
     /// that there were no duplicates) and therefore should not be displayed.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
-    private static void DisplayPairs(string[] words) {
+    private static void DisplayPairs(string[] words)
+    {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
@@ -118,20 +121,20 @@ public static class SetsAndMapsTester {
         // Iterate through the word list
         foreach (string word in words)
         {
-          // Reverse the word
-          string reversedWord = new string(word.Reverse().ToArray());
+            // Reverse the word
+            string reversedWord = new string(word.Reverse().ToArray());
 
-          // Check if the reversed word is in the set and the words are not the same
-          if (wordSet.Contains(reversedWord) && word != reversedWord)
-          {
-            // Print the pair of words
-            Console.WriteLine($"{word} & {reversedWord}");
-          }
-          else
-          {
-            // Add the word to the set
-            wordSet.Add(word);
-          }
+            // Check if the reversed word is in the set and the words are not the same
+            if (wordSet.Contains(reversedWord) && word != reversedWord)
+            {
+                // Print the pair of words
+                Console.WriteLine($"{word} & {reversedWord}");
+            }
+            else
+            {
+                // Add the word to the set
+                wordSet.Add(word);
+            }
         }
 
 
@@ -153,20 +156,21 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 2 #
     /// #############
-    private static Dictionary<string, int> SummarizeDegrees(string filename) {
+    private static Dictionary<string, int> SummarizeDegrees(string filename)
+    {
         var degrees = new Dictionary<string, int>();
-        int values = 0;
-        foreach (var line in File.ReadLines(filename)) {
-            var fields = line.Split(",");
-            if (degrees.ContainsKey(fields[4]))
-            {
-                degrees[fields[4]] += 1;
-            }
-            else
-            {
-                degrees.Add(fields[4], values);
-            }
-        }
+        //int values = 0;
+        //foreach (var line in File.ReadLines(filename)) {
+        //    var fields = line.Split(",");
+        //    if (degrees.ContainsKey(fields[4]))
+        //    {
+        //        degrees[fields[4]] += 1;
+        //    }
+        //    else
+        //    {
+        //        degrees.Add(fields[4], values);
+        //    }
+        //}
 
         return degrees;
     }
@@ -190,23 +194,66 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 3 #
     /// #############
-    private static bool IsAnagram(string word1, string word2) {
+    private static bool IsAnagram(string word1, string word2)
+    {
         // Todo Problem 3 - ADD YOUR CODE HERE
         if (word1.Length != word2.Length)
         {
             return false;
         }
-        
-        //split //sort 
 
+        Dictionary<char, int> firstword = new Dictionary<char, int>();
+        Dictionary<char, int> secondword = new Dictionary<char, int>();
+
+        foreach (char letter in word1)
+        {
+            if (firstword.ContainsKey(letter))
+            {
+                firstword[letter]++;
+            }
+            else
+            {
+                firstword.Add(letter, 1);
+            }
+        }
+
+        foreach (var letter in word2)
+        {
+            if (secondword.ContainsKey(letter))
+            {
+                secondword[letter]++;
+            }
+            else
+            {
+                secondword.Add(letter, 1);
+            }
+        }
         
-        return false;
+        word1.ToLower();
+        word2.ToLower();
+        
+        var first = firstword.Keys.ToList();
+        first.Sort();
+        first.ToString().ToLower();
+
+        var second = secondword.Keys.ToList();
+        second.Sort();
+        second.ToString().ToLower();
+
+        return first.SequenceEqual(second);
+
     }
+
+
+
+
+
 
     /// <summary>
     /// Sets up the maze dictionary for problem 4
     /// </summary>
-    private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap() {
+    private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap()
+    {
         Dictionary<ValueTuple<int, int>, bool[]> map = new() {
             { (1, 1), new[] { false, true, false, true } },
             { (1, 2), new[] { false, true, true, false } },
@@ -262,7 +309,8 @@ public static class SetsAndMapsTester {
     /// https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
     /// 
     /// </summary>
-    private static void EarthquakeDailySummary() {
+    private static void EarthquakeDailySummary()
+    {
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
         using var client = new HttpClient();
         using var getRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
