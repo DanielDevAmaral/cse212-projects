@@ -19,8 +19,57 @@ public class Maze {
     private int _currX = 1;
     private int _currY = 1;
 
+
     public Maze(Dictionary<ValueTuple<int, int>, bool[]> mazeMap) {
         _mazeMap = mazeMap;
+    }
+
+    private bool Wall()
+    {
+        if(_currX==3 && _currY==1){
+            return false;
+        }
+        if(_currX==3 && _currY==2){
+            return false;
+        }
+        if(_currX==3 && _currY==3){
+            return false;
+        }
+        //////////////////////
+        if(_currX==1 && _currY==3){
+            return false;
+        }
+        /////////////////////
+        if(_currX==2 && _currY==5){
+            return false;
+        }
+        if(_currX==2 && _currY==6){
+            return false;
+        }
+        ////////////////////
+        if(_currX==4 && _currY==2){
+            return false;
+        }
+        ///////////////////
+        if(_currX==4 && _currY==5){
+            return false;
+        }
+        if(_currX==4 && _currY==6){
+            return false;
+        }
+        ///////////////////
+        if(_currX==6 && _currY==2){
+            return false;
+        }
+        //////////////////
+        if(_currX==6 && _currY==4){
+            return false;
+        }
+        if(_currX==6 && _currY==5){
+            return false;
+        }
+        
+        return true;
     }
 
     // Todo Maze Problem - ADD YOUR CODE HERE
@@ -30,6 +79,18 @@ public class Maze {
     /// </summary>
     public void MoveLeft() {
         // FILL IN CODE
+
+
+        if(_currX <= 1)
+        {
+            Console.WriteLine($"Can't go that way!");
+        }
+        else
+        {
+            _currX--;
+            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+        }
+
     }
 
     /// <summary>
@@ -38,6 +99,17 @@ public class Maze {
     /// </summary>
     public void MoveRight() {
         // FILL IN CODE
+        
+
+        if(_currX == 6)
+        {
+            Console.WriteLine($"Can't go that way!");
+        }
+        else
+        {
+            _currX++;
+            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+        }
     }
 
     /// <summary>
@@ -46,6 +118,16 @@ public class Maze {
     /// </summary>
     public void MoveUp() {
         // FILL IN CODE
+        
+        if(_currY <= 1)
+        {
+            Console.WriteLine($"Can't go that way!");
+        }
+        else
+        {
+            _currY--;
+            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+        }
     }
 
     /// <summary>
@@ -54,6 +136,17 @@ public class Maze {
     /// </summary>
     public void MoveDown() {
         // FILL IN CODE
+
+
+        if(_currY == 6)
+        {
+            Console.WriteLine($"Can't go that way!");
+        }
+        else
+        {
+            _currY++;
+            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+        }
     }
 
     public void ShowStatus() {

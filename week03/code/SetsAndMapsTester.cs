@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.VisualBasic.FileIO;
 
 public static class SetsAndMapsTester
 {
@@ -31,7 +32,7 @@ public static class SetsAndMapsTester
         // Problem 2: Degree Summary
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== Census TESTS ===========");
-        Console.WriteLine(string.Join(", ", SummarizeDegrees("week03\\code\\census.txt")));
+        Console.WriteLine(string.Join(", ", SummarizeDegrees("C:\\Users\\isabe\\OneDrive\\Área de Trabalho\\Daniel (BYUI)\\cse212-projects\\week03\\code\\census.txt")));
         // Results may be in a different order:
         // <Dictionary>{[Bachelors, 5355], [HS-grad, 10501], [11th, 1175],
         // [Masters, 1723], [9th, 514], [Some-college, 7291], [Assoc-acdm, 1067],
@@ -159,18 +160,25 @@ public static class SetsAndMapsTester
     private static Dictionary<string, int> SummarizeDegrees(string filename)
     {
         var degrees = new Dictionary<string, int>();
-        //int values = 0;
-        //foreach (var line in File.ReadLines(filename)) {
-        //    var fields = line.Split(",");
-        //    if (degrees.ContainsKey(fields[4]))
-        //    {
-        //        degrees[fields[4]] += 1;
-        //    }
-        //    else
-        //    {
-        //        degrees.Add(fields[4], values);
-        //    }
-        //}
+        using var reader = new TextFieldParser(filename);
+        reader.TextFieldType = FieldType.Delimited;
+        reader.SetDelimiters(",");
+
+        while(!reader.EndOfData)
+        {
+            var columns = reader.ReadFields()!;
+            var education = columns[3];
+            if (!degrees.ContainsKey(education))
+            {
+                degrees.Add(education, 1);
+            }
+            else
+            {
+                degrees[education] += 1;
+            }
+
+        }
+          
 
         return degrees;
     }
@@ -196,51 +204,34 @@ public static class SetsAndMapsTester
     /// #############
     private static bool IsAnagram(string word1, string word2)
     {
+        word1 = word1.Trim().ToLower();
+        word2 = word2.Trim().ToLower();
         // Todo Problem 3 - ADD YOUR CODE HERE
-        if (word1.Length != word2.Length)
-        {
-            return false;
-        }
+       if (word1.Length != word2.Length)
+    {
+        return false;
+    }
 
-        Dictionary<char, int> firstword = new Dictionary<char, int>();
-        Dictionary<char, int> secondword = new Dictionary<char, int>();
+    char[] firstword = new char[word1.Length];
+    char[] secondword = new char[word2.Length];
 
-        foreach (char letter in word1)
-        {
-            if (firstword.ContainsKey(letter))
-            {
-                firstword[letter]++;
-            }
-            else
-            {
-                firstword.Add(letter, 1);
-            }
-        }
+    for (int i = 0; i < word1.Length; i++)
+    {
+        firstword[i] = word1[i];
+        secondword[i] = word2[i];
+    }
 
-        foreach (var letter in word2)
-        {
-            if (secondword.ContainsKey(letter))
-            {
-                secondword[letter]++;
-            }
-            else
-            {
-                secondword.Add(letter, 1);
-            }
-        }
-        
-        word1.ToLower();
-        word2.ToLower();
-        
-        var first = firstword.Keys.ToList();
-        first.Sort();
-        first.ToString().ToLower();
+    var word1Order = firstword.OrderByDescending(s => s);
+    var word2Order = secondword.OrderByDescending(s => s);
 
-        var second = secondword.Keys.ToList();
-        second.Sort();
-        second.ToString().ToLower();
+    bool identical = word1Order.SequenceEqual(word2Order);
 
-        return first.SequenceEqual(second);
+    if (identical == false)
+    {
+        return false;
+    }
+
+    return true;
 
     }
 
@@ -255,6 +246,7 @@ public static class SetsAndMapsTester
     private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap()
     {
         Dictionary<ValueTuple<int, int>, bool[]> map = new() {
+            //left, right, up, down
             { (1, 1), new[] { false, true, false, true } },
             { (1, 2), new[] { false, true, true, false } },
             { (1, 3), new[] { false, false, false, false } },
