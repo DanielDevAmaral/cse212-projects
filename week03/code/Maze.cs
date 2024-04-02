@@ -24,54 +24,6 @@ public class Maze {
         _mazeMap = mazeMap;
     }
 
-    private bool Wall()
-    {
-        if(_currX==3 && _currY==1){
-            return false;
-        }
-        if(_currX==3 && _currY==2){
-            return false;
-        }
-        if(_currX==3 && _currY==3){
-            return false;
-        }
-        //////////////////////
-        if(_currX==1 && _currY==3){
-            return false;
-        }
-        /////////////////////
-        if(_currX==2 && _currY==5){
-            return false;
-        }
-        if(_currX==2 && _currY==6){
-            return false;
-        }
-        ////////////////////
-        if(_currX==4 && _currY==2){
-            return false;
-        }
-        ///////////////////
-        if(_currX==4 && _currY==5){
-            return false;
-        }
-        if(_currX==4 && _currY==6){
-            return false;
-        }
-        ///////////////////
-        if(_currX==6 && _currY==2){
-            return false;
-        }
-        //////////////////
-        if(_currX==6 && _currY==4){
-            return false;
-        }
-        if(_currX==6 && _currY==5){
-            return false;
-        }
-        
-        return true;
-    }
-
     // Todo Maze Problem - ADD YOUR CODE HERE
     /// <summary>
     /// Check to see if you can move left.  If you can, then move.  If you
@@ -80,15 +32,14 @@ public class Maze {
     public void MoveLeft() {
         // FILL IN CODE
 
-
-        if(_currX <= 1)
+        
+        if(_mazeMap[(_currX, _currY)][0])
         {
-            Console.WriteLine($"Can't go that way!");
+            _currX--;
         }
         else
         {
-            _currX--;
-            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+            Console.WriteLine($"Can't go that way!");
         }
 
     }
@@ -101,14 +52,13 @@ public class Maze {
         // FILL IN CODE
         
 
-        if(_currX == 6)
+       if(_mazeMap[(_currX, _currY)][1])
         {
-            Console.WriteLine($"Can't go that way!");
+            _currX++;
         }
         else
         {
-            _currX++;
-            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+            Console.WriteLine($"Can't go that way!");
         }
     }
 
@@ -119,14 +69,13 @@ public class Maze {
     public void MoveUp() {
         // FILL IN CODE
         
-        if(_currY <= 1)
+       if(_mazeMap[(_currX, _currY)][2])
         {
-            Console.WriteLine($"Can't go that way!");
+            _currY--;
         }
         else
         {
-            _currY--;
-            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+            Console.WriteLine($"Can't go that way!");
         }
     }
 
@@ -138,14 +87,13 @@ public class Maze {
         // FILL IN CODE
 
 
-        if(_currY == 6)
+        if(_mazeMap[(_currX, _currY)][3])
         {
-            Console.WriteLine($"Can't go that way!");
+            _currY++;
         }
         else
         {
-            _currY++;
-            Console.WriteLine($"Current location (x={_currX}, y={_currY})");
+            Console.WriteLine($"Can't go that way!");
         }
     }
 

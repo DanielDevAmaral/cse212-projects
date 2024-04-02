@@ -32,7 +32,7 @@ public static class SetsAndMapsTester
         // Problem 2: Degree Summary
         // Sample Test Cases (may not be comprehensive) 
         Console.WriteLine("\n=========== Census TESTS ===========");
-        Console.WriteLine(string.Join(", ", SummarizeDegrees("C:\\Users\\isabe\\OneDrive\\Área de Trabalho\\Daniel (BYUI)\\cse212-projects\\week03\\code\\census.txt")));
+        Console.WriteLine(string.Join(", ", SummarizeDegrees("C:\\Users\\dlamaral\\Desktop\\byu\\cse212-projects\\week03\\code\\census.txt")));
         // Results may be in a different order:
         // <Dictionary>{[Bachelors, 5355], [HS-grad, 10501], [11th, 1175],
         // [Masters, 1723], [9th, 514], [Some-college, 7291], [Assoc-acdm, 1067],
