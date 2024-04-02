@@ -145,9 +145,15 @@ public static class RecursionTester {
     /// to identify a base case (terminating case).  If the value of
     /// n &lt;= 0, just return 0.   A loop should not be used.
     /// </summary>
-    public static int SumSquaresRecursive(int n) {
+    public static int SumSquaresRecursive(int n) 
+    {
         // TODO Start Problem 1
-        return 0;
+        if (n == 0)
+        {
+            return 0;
+        }
+
+        return n * n + SumSquaresRecursive(n - 1);
     }
 
     /// <summary>
@@ -171,6 +177,19 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
+        if (word.Length == size) 
+        {
+            Console.WriteLine(word);
+        } 
+        else 
+        {
+            for (int i = 0; i < letters.Length; i++) 
+            {
+                var letter = letters[i];
+                var lettersLeft = letters.Remove(i, 1);
+                PermutationsChoose(lettersLeft, size, word + letter);
+            }
+        }
     }
 
     /// <summary>
@@ -249,6 +268,22 @@ public static class RecursionTester {
     /// </summary>
     public static void WildcardBinary(string pattern) {
         // TODO Start Problem 4
+        if (!pattern.Contains("*"))
+        {
+            Console.WriteLine(pattern);
+            return;
+        }
+        
+        else
+        {
+            int index = pattern.IndexOf("*");
+
+            string prefix = pattern.Substring(0, index);
+            string suffix = pattern.Substring(index + 1);
+
+            WildcardBinary(prefix + "0" + suffix);
+            WildcardBinary(prefix + "1" + suffix);
+        }
     }
 
     /// <summary>
