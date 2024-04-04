@@ -7,6 +7,7 @@ public class LinkedList : IEnumerable<int> {
     /// <summary>
     /// Insert a new node at the front (i.e. the head) of the linked list.
     /// </summary>
+    /// done
     public void InsertHead(int value) {
         // Create new node
         Node newNode = new Node(value);
