@@ -9,14 +9,12 @@ public class Node {
 
     public void Insert(int value) {
         if (value < Data) {
-            // Insert to the left
             if (Left is null)
                 Left = new Node(value);
             else
                 Left.Insert(value);
         }
-        else {
-            // Insert to the right
+        else if (value > Data) {
             if (Right is null)
                 Right = new Node(value);
             else
@@ -25,12 +23,53 @@ public class Node {
     }
 
     public bool Contains(int value) {
-        // TODO Start Problem 2
-        return false;
+
+        if (value == Data)
+            return true;
+        else if (value < Data && Left != null)
+        {
+            return Left.Contains(value);
+        }
+        else if (value > Data && Right != null)
+        {
+            return Right.Contains(value);
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     public int GetHeight() {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        int lh;
+        int rh;
+        int maxH;
+        if (Left != null)
+        {
+            lh = Left.GetHeight();
+        }
+        else
+        {
+            lh = 0;
+        }
+        if (Right != null)
+        {
+            rh = Right.GetHeight();
+        }
+        else
+        {
+            rh = 0;
+        }
+        if(lh > rh)
+        {
+            maxH = lh;
+        }
+        else
+        {
+            maxH = rh;
+        }
+        return 1 + maxH; // Replace this line with the correct return statement(s)
     }
 }
